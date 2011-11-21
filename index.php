@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	$oprice = $_POST["oprice"];
 	$howmanywhat = $_POST["howmanywhat"];
 	$howmany = $_POST["howmany"];
+	$sprice = $_POST["sprice"];
 
 	if (!is_numeric($cprice))
 	{
@@ -65,12 +66,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	$to = $o*$packages;
 	$tq = $q*$packages;
 	$tcost = $pcost*$packages; //custo todos os pacotes
-
+	$lgross = 0;
+	$lnet = 0;
+	if ($sprice > 0){
+		$lgross = $tq * $sprice;
+		$lnet = $lgross - $tcost;
+	}
+	
 	$ucost = number_format($ucost,2,",",".");
 	$tcost = number_format($tcost,0,",",".");
 	$pcost = number_format($pcost,0,",",".");
+	$lgross = number_format($lgross,0,",",".");
+	$lnet = number_format($lnet,0,",",".");
 	
-	echo "{type:1,text:'Ok',package:{c:$c, o:$o, q:$q, pcost:\"$pcost\", ucost:\"$ucost\", packages:$packages,  tcost:\"$tcost\",  tc:$tc, to:$to, tq:$tq }}";
+	echo "{type:1,text:'Ok',package:{c:$c, o:$o, q:$q, lnet: \"$lnet\", lgross: \"$lgross\", pcost:\"$pcost\", ucost:\"$ucost\", packages:$packages,  tcost:\"$tcost\",  tc:$tc, to:$to, tq:$tq }}";
 	die();
 }
 ?>
@@ -98,15 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		<div id="container">
 			<h1>Lineage II - Soulshot/Spiritshot calculator</h1>
 
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-2268587471230937";
-/* SSCalc */
-google_ad_slot = "4353504306";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
-</script>
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+
 			<p>
 				This tool will help you to calculate how much
 				Crystals, Soul Ore / Spirit Ore 
@@ -148,6 +149,10 @@ google_ad_height = 60;
 						<input type="text" name="oprice" id="oprice" />
 					</li>
 					<li>
+						<label for="sprice">Sell price:</label>
+						<input type="text" name="sprice" id="sprice" value="0" />
+					</li>
+					<li>
 						<select name="howmanywhat" onchange="clearResult();" class="label">
 							<option value="s">How many SS do you want?</option>
 							<option value="c">How many Crystals do you have?</option>
@@ -159,6 +164,15 @@ google_ad_height = 60;
 						<input class="submit" type="submit" value="Show me!"" />
 					</li>
 				</ul>
+				<script type="text/javascript"><!--
+				google_ad_client = "ca-pub-2268587471230937";
+				/* SSCalc */
+				google_ad_slot = "4353504306";
+				google_ad_width = 468;
+				google_ad_height = 60;
+				//-->
+				</script>
+				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 				<div id="result">
 					<ul>
 						<li>
@@ -202,10 +216,18 @@ google_ad_height = 60;
 						<li>
 							<label for="tcost">Total cost:</label>
 							<div class="result" id="tcost"></div>
+						</li>
+						<li>
+							<label for="lgross">Gross profit:</label>
+							<div class="result" id="lgross"></div>
+						</li>
+						<li>
+							<label for="lnet">Net profit:</label>
+							<div class="result" id="lnet"></div>
 						</li>	
 					</ul>
 				</div>
-				<address>Created by Lucyus from Bartz - Check out my <a href="http://boards.lineage2.com/showthread.php?t=200312">WTS list</a></address>
+				<address>Created by Lucyus and Safado from Chronos</address>
 			</form>
 		</div>
 	</body>
