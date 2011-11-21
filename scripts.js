@@ -29,6 +29,8 @@ $(document).ready(function(){
 						$("#to").html(json.package.to);
 						$("#tq").html(json.package.tq);
 						$("#tcost").html(json.package.tcost);
+						$("#lgross").html(json.package.lgross);
+						$("#lnet").html(json.package.lnet);
 					}
 				}
 			},
