@@ -2,24 +2,22 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	$bd = array(
+		"rss" => array("c"=>2,"o"=>80,"q"=>500),
+		"rbsps" => array("c"=>2,"o"=>750,"q"=>500),
+	
 		"sss" => array("c"=>1,"o"=>40,"q"=>350),
-		"ssps" => array("c"=>1,"o"=>15,"q"=>200),
 		"sbsps" => array("c"=>2,"o"=>50,"q"=>200),
 		
 		"ass" => array("c"=>1,"o"=>36,"q"=>300),
-		"asps" => array("c"=>1,"o"=>22,"q"=>200),
 		"absps" => array("c"=>2,"o"=>70,"q"=>200),
 		
 		"bss" => array("c"=>1,"o"=>54,"q"=>450),
-		"bsps" => array("c"=>1,"o"=>15,"q"=>150),
 		"bbsps" => array("c"=>2,"o"=>16,"q"=>100),
 		
 		"css" => array("c"=>2,"o"=>30,"q"=>952),
-		"csps" => array("c"=>1,"o"=>10,"q"=>200),
 		"cbsps" => array("c"=>2,"o"=>30,"q"=>200),
 		
 		"dss" => array("c"=>3,"o"=>9,"q"=>468),
-		"dsps" => array("c"=>1,"o"=>3,"q"=>100),
 		"dbsps" => array("c"=>2,"o"=>8,"q"=>100),
 	);	
 
@@ -126,14 +124,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 						<label for="type">Type:</label>
 						<select id="type" name="type" id="type">
 							<option value="ss">Soulshot</option>
-							<option value="sps">Spirit Shot</option>
 							<option value="bsps">Blessed Spirit Shot</option>
 						</select>
 					</li>
 					<li>
 						<label for="grade">Grade:</label>
 						<select id="grade" name="grade">
-							<option value="s" selected="selected">S grade</option>
+							<option value="r" selected="selected">R grade</option>
+							<option value="s">S grade</option>
 							<option value="a">A grade</option>
 							<option value="b">B grade</option>
 							<option value="c">C grade</option>
